@@ -11,6 +11,8 @@ plugins {
     java
 }
 
+project.extra["GithubUrl"] = "https://github.com/LHPlugins/free-plugins"
+
 apply<BootstrapPlugin>()
 apply<VersionPlugin>()
 
@@ -33,7 +35,7 @@ subprojects {
     group = "com.openosrs.externals"
 
     project.extra["PluginProvider"] = "LH"
-    project.extra["ProjectUrl"] = "https://discord.gg/5Ca2uPKQm7"
+    project.extra["ProjectSupportUrl"] = "https://discord.gg/5Ca2uPKQm7"
     project.extra["PluginLicense"] = "3-Clause BSD License"
 
     repositories {
