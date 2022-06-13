@@ -9,10 +9,22 @@ Feel free to join my discord: https://discord.gg/5Ca2uPKQm7 to provide feedback 
 
 **Supported plugins:**
 
-You will need to add these repositories.
+You will need to add these repositories. Some of my plugins uses illumines iutils
 
 Mine:
 
 **Github Repository owner:** LHPlugins
 
 **Github Repository name:** free-plugins
+
+Illumine:
+
+**Github Repository owner:** illumineawake
+
+**Github Repository name:** illu-plugins
+
+# Credits
+
+The people mentioned below, I have used their open-source to find out, how all this works. So big thanks to them
+
+Credit to: Owain94, Illumineawake and xkylee.
