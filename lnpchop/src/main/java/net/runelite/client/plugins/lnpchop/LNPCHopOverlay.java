@@ -2,7 +2,6 @@ package net.runelite.client.plugins.lnpchop;
 
 import com.openosrs.client.ui.overlay.components.table.TableAlignment;
 import com.openosrs.client.ui.overlay.components.table.TableComponent;
-import net.runelite.api.Client;
 import net.runelite.api.MenuAction;
 import net.runelite.client.ui.overlay.OverlayMenuEntry;
 import net.runelite.client.ui.overlay.OverlayPanel;
