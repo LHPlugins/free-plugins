@@ -25,20 +25,9 @@
 
 rootProject.name = "lh plugins"
 
-include(":lclient")
-include(":demonicgorilla")
 include(":lnpchop")
-include(":lneverlog")
-include(":lhunllef")
-include(":lnightmare")
-include(":ljad")
-include(":lsarachnis")
 include(":lshamanspawnstimer")
-include(":lprayerflick")
 include(":lkrakentimer")
-include(":lherb")
-include(":lthralls")
-include(":lpyramidplunder")
 
 for (project in rootProject.children) {
     project.apply {
