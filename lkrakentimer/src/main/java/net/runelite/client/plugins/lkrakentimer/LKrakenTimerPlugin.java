@@ -30,28 +30,18 @@ import javax.inject.Singleton;
 import com.google.inject.Provides;
 import lombok.Getter;
 import net.runelite.api.*;
-import net.runelite.api.events.ClientTick;
 import net.runelite.api.events.GameTick;
-import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.ProjectileSpawned;
-import net.runelite.api.widgets.WidgetItem;
 import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDependency;
 import net.runelite.client.plugins.PluginDescriptor;
-import net.runelite.client.plugins.iutils.InventoryUtils;
+import net.runelite.client.plugins.iutils.LegacyMenuEntry;
 import net.runelite.client.plugins.iutils.iUtils;
 import net.runelite.client.ui.overlay.OverlayManager;
 import org.pf4j.Extension;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.Arrays;
 import java.util.List;
-
-import static net.runelite.api.MenuAction.ITEM_USE;
-import static net.runelite.api.MenuAction.ITEM_USE_ON_NPC;
 
 @Extension
 @PluginDependency(iUtils.class)
@@ -72,9 +62,13 @@ public class LKrakenTimerPlugin extends Plugin
 	private TimerOverlay timerOverlay;
 	@Inject
 	private Client client;
+	@Inject
+	private iUtils utils;
 	@Getter
 	private Whirlpool whirlpool;
 	private boolean potionCasted = false;
+
+	private LegacyMenuEntry targetMenu;
 
 	@Provides
 	LKrakenTimerConfig provideConfig(ConfigManager configManager) {
@@ -98,6 +92,9 @@ public class LKrakenTimerPlugin extends Plugin
 	{
 		if (whirlpool == null)
 			return;
+
+		if (config.useAutoAttack() && whirlpool.getTimer() == 0)
+			attackNPC(whirlpool.getNpc());
 
 		if (potionCasted)
 			handleTimerKraken();
@@ -137,11 +134,11 @@ public class LKrakenTimerPlugin extends Plugin
 	private void reset(){
 		potionCasted = false;
 		whirlpool = null;
+		targetMenu = null;
 	}
 
-	private Point getLocation(NPC npc) {
-		return new Point(npc.getLocalLocation().getSceneX(),npc.getLocalLocation().getSceneY());
+	private void attackNPC(NPC npc){
+		targetMenu = new LegacyMenuEntry("", "", npc.getIndex(), MenuAction.NPC_SECOND_OPTION.getId(), 0, 0, false);
+		utils.doActionMsTime(targetMenu, whirlpool.getNpc().getConvexHull().getBounds(), 300);
 	}
-
-
 }
