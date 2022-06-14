@@ -25,6 +25,7 @@ rootProject.name = "lh plugins"
 include(":lnpchop")
 include(":lshamanspawnstimer")
 include(":lkrakentimer")
+include(":lthralls")
 
 for (project in rootProject.children) {
     project.apply {
